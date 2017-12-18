@@ -1,0 +1,138 @@
+<project>
+
+    <repositories>
+        <!-- NB: for project parent -->
+        <repository>
+            <id>imagej.public</id>
+            <url>http://maven.imagej.net/content/groups/public</url>
+        </repository>
+
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+
+    </repositories>
+
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>gov.inl.SIEVAS</groupId>
+    <artifactId>HZGenerator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>HZ Generator</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<version>3.0.2</version>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<addClasspath>true</addClasspath>-->
+                            <!--<mainClHZGeneratorGUIrGUI</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>gov.inl.HZGenerator.MainClass</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    <dependencies>
+
+        <!-- twelvemonkeys is an open source image loader.
+            In the future, we can load things like jpeg files -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tiff</artifactId>
+            <version>3.3.2</version> <!-- Alternatively, build your own version -->
+        </dependency>
+
+        <!-- Todo: remove imagej, since it's kinda slow and hard to work with  -->
+        <!--<dependency>-->
+            <!--<groupId>net.imagej</groupId>-->
+            <!--<artifactId>imagej</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.imagej</groupId>-->
+            <!--<artifactId>ij</artifactId>-->
+            <!--<version>1.45b</version>-->
+        <!--</dependency>-->
+
+        <!-- Jocl is an OpenCL bindings library. -->
+        <dependency>
+            <groupId>org.jocl</groupId>
+            <artifactId>jocl</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- Used to parse json files  -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+
+        <!-- JOML for vector math -->
+        <dependency>
+            <groupId>org.joml</groupId>
+            <artifactId>joml</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
+
+        <!-- CPU side morton encoding and deconding -->
+        <!--<dependency>-->
+            <!--<groupId>gov.inl.SIEVAS</groupId>-->
+            <!--<artifactId>HMortonLib</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+
+        <!-- JUnit for unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+
+
+
+    </dependencies>
+</project>
